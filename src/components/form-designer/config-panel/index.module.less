@@ -1,0 +1,122 @@
+.my-tab-item{
+  .my-tabs-label  {
+    .el-icon{
+      vertical-align: bottom;
+      margin-right: 6px;
+    }
+  }
+  height: 100%;
+  &.eli-right-props{
+    :global(.el-form-item){
+      border-bottom: solid 1px var(--eli-border-color-lighter);
+      padding-bottom: 12px;
+      margin: 12px;
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+    :global(.el-form-item__label){
+      font-weight: bold;
+      font-size: 13px;
+    }
+    :global(.el-collapse-item__header.is-active){
+      border-bottom: 1px solid var(--el-collapse-border-color);
+    }
+    :global(.el-input-number){
+      width: 100%;
+    }
+  }
+  :global(.el-tabs__item) {
+    border: 0;
+    height: 45px;
+    padding: 0 0 0 12px !important;
+  }
+  :global(.el-tabs__content){
+    height: calc(100% - 45px);
+    :global(.el-tab-pane){
+      height: 100%;
+      :global(.el-collapse-item__header) {
+        padding: 8px 12px;
+      }
+    }
+  }
+  :global(.el-tabs__header){
+    height: 45px;
+    margin: 0;
+  }
+  :global(.el-tabs__nav-wrap){
+    margin-bottom: 0;
+  }
+  :global(.el-tabs__nav-wrap:after){
+    height: 1px;
+  }
+  :global(.el-collapse-item__content){
+    padding-bottom: 0;
+  }
+  :global(.el-collapse){
+    border-bottom: none;
+    &:first-child{
+      border-top: none;
+    }
+  }
+  :global(.el-input__inner){
+    font-size: 13px;
+  }
+  :global(.el-select__wrapper){
+    font-size: 13px;
+  }
+  :global(.el-radio-button__inner){
+    font-size: 13px;
+  }
+}
+.state-filed-wrap{
+  border-bottom: solid 1px var(--eli-border-color-lighter);
+  .state-filed-switch{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 12px;
+    margin-right: 12px;
+    &:last-child{
+      border-bottom: none;
+    }
+    .state-filed-text{
+      font-weight: bold;
+      font-size: 13px;
+      color: var(--el-text-color-regular);
+    }
+  }
+  .state-filed-show{
+    padding-top: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+.options-item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom:8px;
+  .options-item-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 32px;
+    color: var(--eli-text-color-regular);
+    &.move{
+      cursor: move;
+
+    }
+  }
+  .flex-1{
+    flex: 1;
+  }
+}
+.options-addBtn{
+  padding-left: 30px;
+  margin-bottom: 12px;
+  .addBtn{
+    font-size: 13px;
+  }
+}

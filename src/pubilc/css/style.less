@@ -1,0 +1,86 @@
+:root {
+  color-scheme: light;
+  --eli-color-primary: var(--el-color-primary);
+  --eli-widget-bg-color: var(--el-color-primary-light-9);
+  --eli-text-color-primary: var(--el-text-color-primary);
+  --eli-text-color-regular: var(--el-text-color-regular);
+  --eli-text-color-secondary: var(--el-text-color-secondary);
+  --eli-text-color-placeholder: var(--el-text-color-placeholder);
+  --eli-text-color-disabled: var(--el-text-color-disabled);
+  --eli-white: #fff;
+  --eli-black: #000;
+  --eli-border-color: var(--el-border-color-light);
+  --eli-border-color-lighter: var(--el-border-color-lighter);
+  --eli-border-color-extra: var(--el-border-color-extra-light);
+  --eli-footer-bg-color: var(--el-fill-color-light);
+  --eli-fill: var(--el-fill-color-dark);
+  --eli-fill-lighter: var(--el-fill-color-lighter);
+  --eli-fill-extra: var(--el-fill-color-extra-light);
+  --eli-main-bg-color: var(--el-bg-color-page);
+  --eli-box-shadow: var(--el-box-shadow-light);
+  --eli-box-shadow-lighter: var(--el-box-shadow-lighter);
+  --eli-model-color: var(--el-color-success);
+  --eli-drag-color: var(--el-color-danger);
+  --eli-hide-bg-color: var(--el-color-danger-light-9);
+  --eli-container-fill-color: rgba(253, 246, 236, .3);
+  --eli-container-color: var(--el-color-warning);
+  --eli-container-bg-color: var(--el-color-warning-light-9);
+  --eli-bg-base: var(--el-bg-color);
+  --eli-container-inset-color: rgba(0, 0, 0, .1);
+  --eli-padding:20px
+}
+
+.eli-form{
+  font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--fm-text-color-primary);
+  background: var(--fm-bg-base);
+  height: 100%;
+  border: 1px solid var(--eli-border-color);
+  min-width: 1000px;
+  text-align: left;
+  .el-card__header,.el-card__body{
+    padding: var(--eli-padding);
+  }
+  .el-tree{
+    font-size: 13px;
+    .el-tree__empty-block{
+      .el-empty__description{
+        p{
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
+    background-color: rgb(121.3, 187.1, 255);
+    color: #ffffff;
+  }
+
+}
+.block-children{
+  &.el-form-item{
+    padding-bottom: 0 !important;
+  }
+  .el-form-item__content{
+    display: block !important;
+    line-height: 32px !important;
+  }
+  .el-form-item__label{
+    height: 32px !important;
+    line-height: 32px !important;
+    margin-bottom: 0 !important;
+  }
+  .el-form-item:first-child{
+    margin-top: 0 !important;
+  }
+  .el-form-item:last-child{
+    margin-bottom: 0 !important;
+  }
+}
+.hidden-label{
+  .el-form-item__label{
+    display: none !important;
+  }
+}

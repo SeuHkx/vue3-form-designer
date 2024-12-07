@@ -1,0 +1,37 @@
+.header-bar{
+  line-height: 42px;
+  &:after{
+    content: '.';
+    height: 0;
+    display: block;
+    clear: both;
+  }
+  .eli-form-header-bar--left{
+    float: left;
+    .icon-wrap{
+      position: relative;
+      margin-left: 12px;
+      height: 100%;
+      padding-left: 2px;
+      &:before{
+        content: "";
+        display: block;
+        width: 1px;
+        height: 24px;
+        background: #e2e8f0;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin-top: -10px;
+      }
+    }
+
+  }
+  .eli-form-header-bar--right{
+    float: right;
+  }
+  .el-icon{
+    vertical-align: bottom;
+    margin-right: 6px;
+  }
+}

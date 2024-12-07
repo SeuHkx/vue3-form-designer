@@ -1,0 +1,122 @@
+.my-el-container{
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: row;
+  flex-shrink: 1;
+  overflow: hidden;
+  position: relative;
+  background: var(--eli-bg-base);
+  .container-center{
+    border-left: 1px solid var(--eli-border-color);
+    border-right: 1px solid var(--eli-border-color);
+
+  }
+  :global(.el-aside){
+    position: relative;
+    overflow: inherit;
+  }
+  .eli-aside-arrow{
+    position: absolute;
+    top: 50%;
+    margin-top: -16px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--eli-bg-base);
+    z-index: 10;
+    box-shadow: #0000003d 0 1px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    color: var(--eli-text-color-secondary);
+    &.arrow-left{
+      right: -20px;
+    }
+    &.arrow-right{
+      left: -22px;
+    }
+  }
+  .my-el-main{
+    height: 100%;
+    padding: 8px;
+  }
+
+
+  .eli-form-header{
+    height: 45px;
+    border-bottom: solid 1px var(--eli-border-color);
+  }
+  .eli-components-wrap{
+    padding: 0;
+    position: relative;
+    background: var(--eli-main-bg-color);
+    //flex: 1;
+    background-size: 15px 15px;
+    overflow: hidden;
+    background-image: linear-gradient(var(--eli-main-bg-color) 14px, transparent 0), linear-gradient(90deg, transparent 14px, black 0);
+  }
+  .eli-form-container{
+    position: absolute;
+    border: 0;
+    border-radius: 0;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    .eli-form-container-box{
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      //background-color: rgb(246, 245, 246);
+      background-color: #fff;
+      box-shadow: #0000001a 0 20px 25px -5px, #0000000a 0 10px 10px -5px;
+      cursor: pointer;
+      overflow-y: auto;
+      overflow-x: auto;
+      transition: width ease-in-out 0.3s;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      &.eli-form-pc{
+        width: 100%;
+      }
+      &.eli-form-mobile{
+        width: 375px;
+        padding: 0;
+      }
+    }
+    :global(.van-form){
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+      //background-color: rgb(246, 245, 246);
+      position: relative;
+      :global(.van-cell-group){
+        height: 100%;
+        background-color: transparent;
+      }
+    }
+    :global(.el-form){
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+      //background-color: rgb(246, 245, 246);
+      position: relative;
+      :global(.ghost){
+        background: var(--eli-drag-color) !important;
+        border: 2px solid var(--eli-drag-color) !important;
+        outline-width: 0 !important;
+        height: 2px !important;
+        box-sizing: border-box !important;
+        font-size: 0;
+        content: "";
+        overflow: hidden !important;
+        padding: 0 !important;
+      }
+    }
+  }
+}
