@@ -5,11 +5,13 @@ import {
     LAYOUT_TABLE_CELL,
     PROPS_FORM
 } from "@/components/form-designer/config-hardcode";
+import {generateRandomString} from "@/utils/generateRandomString.ts";
 
 type Widget = {
     type: string;
     name: string;
     label: string;
+    id:string;
     properties: Record<string, any>;
     children?: Widget[];
 };
@@ -23,7 +25,8 @@ export const initDefaultForm = (json: string, widgets: any, defaultForm: any) =>
                 type: widgetType,
                 name,
                 properties: rest,
-                label: rest.label
+                label: rest.label,
+                id:`${widgetType}_${generateRandomString()}`
             };
             if (LAYOUT_COL === widgetType || LAYOUT_TABLE_CELL === widgetType) {
                 widget.children = [];

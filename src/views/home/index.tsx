@@ -1,9 +1,13 @@
 import {defineComponent} from 'vue';
-import FormDesigner from "@/components/form-designer";
+import FormDesigner from "@/components/form-designer/index.tsx";
+//import {FormDesigner} from './../../../dist/formDesigner.es.js';
 const Home = defineComponent({
     name:'Home',
     props:{
 
+    },
+    components: {
+        FormDesigner
     },
     setup(){
         const onSave = (json:string)=>{
@@ -11,6 +15,7 @@ const Home = defineComponent({
         }
         const jsonData = ''
         return () => (
+
             <FormDesigner onSave={onSave} schemas={jsonData}/>
         )
     }

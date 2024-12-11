@@ -3,7 +3,6 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import App from './App';
 import ElementPlus from "element-plus";
-
 import '@/pubilc/css/normalize.less';
 import '@/pubilc/css/init.less';
 import '@/pubilc/css/style.less';

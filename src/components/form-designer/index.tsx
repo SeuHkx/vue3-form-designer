@@ -21,7 +21,7 @@ import _ from 'lodash';
 import styles from './index.module.less';
 
 const FormDesigner = defineComponent({
-    name:'FormDesigner',
+    name:'FormDesignerComponent',
     emits: ['save'],
     props:{
         schemas:{
