@@ -1,5 +1,5 @@
 import {defineComponent, PropType, ref,computed} from 'vue';
-import {Field} from 'vant';
+import {Empty} from 'vant';
 import {extractConditions,reconstructExpression} from "@/components/form-designer/form-plugins/expressionEval.ts";
 import {Parser} from 'expr-eval';
 import styles from "./../../index.module.less";
@@ -49,7 +49,7 @@ const VantFormItem = defineComponent({
 
         return () => (
             isComponentVisible.value?(
-                <Field name="用户名" label="用户名" placeholder="用户名"/>
+                <Empty description="暂无对应控件"/>
             ):(
                 <div class={styles['isComponentVisible']}>
                     HIDE

@@ -1,14 +1,12 @@
 import { defineComponent} from 'vue';
 import {ElConfigProvider} from "element-plus";
-import Home from "@/views/home";
-
+import {FormDesigner} from "@/components/form-designer/index.ts";
 const App = defineComponent({
   name:'App',
   setup() {
-
     return () => (
         <ElConfigProvider>
-          <Home/>
+            <FormDesigner />
         </ElConfigProvider>
     );
   }

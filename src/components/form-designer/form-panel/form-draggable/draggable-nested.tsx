@@ -1,7 +1,7 @@
 import {defineComponent, nextTick, PropType} from 'vue';
 import Draggable from 'vuedraggable';
 import {ElIcon} from "element-plus";
-import {CopyDocument, Delete, Expand, Histogram, Plus, Rank} from "@element-plus/icons-vue";
+import {CopyDocument, Delete,Plus, Rank} from "@element-plus/icons-vue";
 import {getComponentByType} from "@/components/form-designer/form-panel/form-render/typeMappings.ts";
 import {generateRandomString} from "@/utils/generateRandomString.ts";
 import {saveToLocalStorage,findWidgetIndex} from "@/components/form-designer/form-plugins/localStorageUtils.ts";
@@ -115,7 +115,7 @@ const DraggableNested = defineComponent({
             props.selectedWidget.value = widget;
             nextTick(()=>{
                 treeStore.treeInstance.setCurrentKey(widget.id);
-            })
+            });
         }
         const renderActionButtons = (element: Widget) => {
             return (
@@ -135,28 +135,6 @@ const DraggableNested = defineComponent({
                                     <Plus />
                                 </ElIcon>
                             </div>
-                        )}
-                        {element.type === LAYOUT_TABLE && (
-                            <>
-                                <div
-                                    title='插入行'
-                                    class={styles['pointer']}
-                                    onClick={(event: any) => addWidgetColHandle(event, element)}
-                                >
-                                    <ElIcon>
-                                        <Expand/>
-                                    </ElIcon>
-                                </div>
-                                <div
-                                    title='插入列'
-                                    class={styles['pointer']}
-                                    onClick={(event: any) => addWidgetColHandle(event, element)}
-                                >
-                                    <ElIcon>
-                                        <Histogram/>
-                                    </ElIcon>
-                                </div>
-                            </>
                         )}
                         <div
                             class={styles['pointer']}
@@ -224,11 +202,11 @@ const DraggableNested = defineComponent({
         const layoutPadding = (type:string)=>{
             if(type === LAYOUT_ROW){
                 return {
-                    padding:'8px'
+                    padding:'8px 0 8px'
                 }
             }else if(type === LAYOUT_TABLE){
                 return {
-                    padding:'8px'
+                    padding:'8px 0 8px'
                 }
             }else{
                 return {}

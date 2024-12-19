@@ -255,6 +255,24 @@ export const PanelConfig = [
                         }
                     }
                 }
+            },
+            {
+                name:'img',
+                text:'图片',
+                widget:{
+                    componentType:'img',
+                    properties:{
+                        img:{
+                            widget:'img',
+                            label:'图片',
+                            labelName:'图片',
+                            width:'200px',
+                            height:'100px',
+                            fit:'fill',
+                            errorPlaceholder:'占位提示'
+                        }
+                    }
+                }
             }
         ]
     },
@@ -414,8 +432,7 @@ export const PanelConfig = [
                                         colspan:1,
                                         rowspan:1,
                                         isMerged:false,
-                                        textAlign:'',
-                                        verticalAlign:''
+                                        justifyContent:'left'
                                     }
                                 }
                             }

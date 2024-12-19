@@ -20,8 +20,8 @@ import {
 import _ from 'lodash';
 import styles from './index.module.less';
 
-const FormDesigner = defineComponent({
-    name:'FormDesignerComponent',
+export default defineComponent({
+    name:'FormDesigner',
     emits: ['save'],
     props:{
         schemas:{
@@ -83,11 +83,7 @@ const FormDesigner = defineComponent({
                 <ElMain class={styles['my-el-main']}>
                     <ElContainer class="eli-form">
                         <ElAside width="260px">
-                            <div class={[styles['eli-aside-arrow'],styles['arrow-left']]}>
-                                <ElIcon size={20}>
-                                    <ArrowLeft/>
-                                </ElIcon>
-                            </div>
+                            <div class={[styles['eli-aside-arrow'],styles['arrow-left']]}></div>
                             <WidgetPanel
                                 addAction={addAction}
                                 widgets={widgets}
@@ -119,11 +115,7 @@ const FormDesigner = defineComponent({
                             </ElMain>
                         </ElContainer>
                         <ElAside width="300px">
-                            <div class={[styles['eli-aside-arrow'],styles['arrow-right']]}>
-                                <ElIcon size={20} >
-                                    <ArrowRight/>
-                                </ElIcon>
-                            </div>
+                            <div class={[styles['eli-aside-arrow'],styles['arrow-right']]}></div>
                             <ConfigPanel defaultForm={defaultForm} selectedWidget={selectedWidget}/>
                         </ElAside>
                     </ElContainer>
@@ -132,4 +124,4 @@ const FormDesigner = defineComponent({
         )
     }
 })
-export default FormDesigner;
+//export default FormDesignerComponent;

@@ -19,7 +19,7 @@ import {saveForm, saveToLocalStorage} from "@/components/form-designer/form-plug
 import styles from './index.module.less';
 import {fullScreen} from "@/components/form-designer/form-plugins/toolsBarUtils.ts";
 import UtilsLocalCache from "@/components/form-designer/toolsbar-panel/toolsbar-utils/utils-localCache.tsx";
-import {PROPS_FORM} from "@/components/form-designer/config-hardcode";
+import {PROPS_FIELD, PROPS_FORM} from "@/components/form-designer/config-hardcode";
 
 
 interface State {
@@ -109,6 +109,9 @@ export default defineComponent({
             const previousState = props.undo(); // 获取撤销的状态
             props.widgets.value = previousState ? [...previousState] : [];
             saveToLocalStorage(props.widgets.value,props.defaultForm);
+            props.selectedWidget.value = null;
+            props.defaultForm.activeTab = PROPS_FORM;
+            props.defaultForm.activeWidget = '';
         }
         const redoHandle = ()=>{
             const nextState = props.redo();
@@ -268,12 +271,6 @@ export default defineComponent({
                         </div>
                     </div>
                     <div class={styles['eli-form-header-bar--right']}>
-                        {/*<ElButton link type="primary">*/}
-                        {/*    <ElIcon class={styles['el-icon']}>*/}
-                        {/*        <Memo/>*/}
-                        {/*    </ElIcon>*/}
-                        {/*    模版*/}
-                        {/*</ElButton>*/}
                         <ElButton link type="primary" onClick={previewFormHandle}>
                             <ElIcon class={styles['el-icon']}>
                                 <View/>

@@ -254,8 +254,6 @@ export const layoutCardConfig = [
     {field: 'hiddenHeader', title: '显示标题区域', widget: 'switch'},
     {field: 'borderWidth', title: '是否有边框', widget: 'switch'},
     {field: 'shadow', title: '阴影显示', widget: 'radioButton',enum:['always','never','hover'],enumNames:['always','never','hover']},
-
-
     {field: 'state', title: '状态', widget: 'block', component: 'ConfigFieldState', componentField: 'hidden|disabled'},
 ]
 //text
@@ -265,6 +263,20 @@ export const textConfig = [
     {field: 'labelWidth', title: '标签宽度', widget: 'input'},
     {field: 'labelHidden', title: '隐藏标签', widget: 'switch'},
     {field: 'labelPosition', title: '标签换行', widget: 'switch'},
+    {field: 'state', title: '状态', widget: 'block', component: 'ConfigFieldState', componentField: 'hidden|disabled'},
+]
+//img
+export const imgConfig = [
+    {field: 'label', title: '标题', widget: 'input'},
+    {field: 'fit', title: '图片适应类型', widget: 'select',enum:['fill','contain','cover','none','scale-down'],enumNames:['fill','contain','cover','none','scale-down']},
+    {field: 'dynamicClick', title: '是否传递点击事件', widget: 'switch'},
+    {field: 'errorPlaceholder', title: '占位提示', widget: 'input'},
+    {field: 'value', title: '图片地址', widget: 'input'},
+    {field: 'width', title: '图片宽度', widget: 'input'},
+    {field: 'height', title: '图片高度', widget: 'input'},
+    {field: 'labelHidden', title: '隐藏标签', widget: 'switch'},
+    {field: 'labelPosition', title: '标签换行', widget: 'switch'},
+    {field: 'required', title: '必填项', widget: 'switch', component: 'ConfigFieldRequired', componentField: 'rules'},
     {field: 'state', title: '状态', widget: 'block', component: 'ConfigFieldState', componentField: 'hidden|disabled'},
 ]
 //text link
@@ -332,8 +344,7 @@ export const layoutTableConfig = [
 export const layoutTableCellConfig = [
     {field: 'label', title: '标题', widget: 'input'},
     {field: 'height', title: '高度', widget: 'input'},
-    {field: 'textAlign', title: '文本对齐方式', widget: 'radioButton',enum:['left','center','right'],enumNames:['左对齐','居中','右对齐']},
-    {field: 'verticalAlign', title: '元素对齐方式', widget: 'radioButton',enum:['top','middle','bottom'],enumNames:['顶对齐','居中','底对齐']},
+    {field: 'justifyContent', title: '元素对齐方式', widget: 'radioButton',enum:['left','center','end'],enumNames:['居右','居中','居左']},
 ]
 
 export const layoutTableThConfig = [

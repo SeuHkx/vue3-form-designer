@@ -19,7 +19,7 @@ import ConfigFieldCascader from "@/components/form-designer/config-panel/config-
 import {
     buttonFieldConfig, cascaderConfig,
     checkboxConfig,
-    datePickerConfig, dividerConfig, htmlConfig,
+    datePickerConfig, dividerConfig, htmlConfig, imgConfig,
     inputFieldConfig,
     inputNumberFieldConfig, layoutCardConfig, layoutColConfig,
     layoutRowConfig, layoutTableCellConfig, layoutTableConfig, layoutTableThConfig,
@@ -212,6 +212,8 @@ export default defineComponent({
                     return htmlConfig;
                 case 'cascader':
                     return cascaderConfig;
+                case 'img':
+                    return imgConfig;
                 default:
                     return [];
             }

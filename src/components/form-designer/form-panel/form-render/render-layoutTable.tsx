@@ -5,6 +5,7 @@ import {Tools} from '@element-plus/icons-vue';
 import {generateRandomString} from "@/utils/generateRandomString.ts";
 import _ from 'lodash';
 import styles from "./../index.module.less";
+import {saveToLocalStorage} from "@/components/form-designer/form-plugins/localStorageUtils.ts";
 
 const LayoutTable = defineComponent({
     name: 'LayoutTable',
@@ -12,6 +13,10 @@ const LayoutTable = defineComponent({
         element: {
             type: Object as PropType<any>,
             required: true
+        },
+        widgets: {
+            type: Object as PropType<any>,
+            required: false
         },
         defaultForm: {
             type: Object as PropType<any>,
@@ -44,38 +49,50 @@ const LayoutTable = defineComponent({
         const reactiveChildren = reactive([...children.value]);
         const unwatchers:any[] = [];
         const createTh = ()=>{
-            const th = reactive({
-                name:'layoutTableTh_'+generateRandomString(),
-                type:'layoutTableTh',
-                label:'表头',
-                properties:{
-                    width:''
-                }
+            const thArr = [];
+            properties.value.totalThWidth.map(width=>{
+                const th = reactive({
+                    name:'layoutTableTh_'+generateRandomString(),
+                    type:'layoutTableTh',
+                    label:'表头',
+                    properties:{
+                        width:width
+                    }
+                })
+                const unwatch = watch(
+                    () => th.properties.width,
+                    () => {
+                        updateTotalThWidth();
+                    }
+                );
+                unwatchers.push(unwatch);
+                thArr.push(th);
             })
-            const unwatch = watch(
-                () => th.properties.width,
-                () => {
-                    updateTotalThWidth();
-                }
-            );
-            unwatchers.push(unwatch);
-            return th;
+            return thArr;
         }
         onBeforeUnmount(() => {
             unwatchers.forEach(unwatch => unwatch());
         });
+
         const trHeader = {
             name:'trHeader',
-            children:[
-                createTh()
-            ]
+            children:createTh()
         }
-        const trBody = {
-            name:'trBody',
-            children:reactiveChildren,
-            id:'trBody_'+generateRandomString()
+        rows.value = [trHeader];
+        const trBodyInit = ()=>{
+            Array.from({ length: properties.value.totalRows-1 }).map((_, rowIndex) => {
+                let trBody = {
+                    name:'trBody',
+                    children:[],
+                    id:'trBody_'+generateRandomString()
+                }
+                properties.value.totalThWidth.map((_, colIndex) =>{
+                    trBody.children.push(reactiveChildren[colIndex]);
+                })
+                rows.value.push(trBody);
+            })
         }
-        rows.value = [trHeader,trBody];
+        trBodyInit();
         const getBodyRow = (id: string) => {
             return rows.value.find((row:any) => row.name === 'trBody' && row.id === id);
         };
@@ -118,7 +135,7 @@ const LayoutTable = defineComponent({
                         row.children.splice(colIndex, 0, createCell(td));
                     }
                     if(row.name === 'trHeader'){
-                        row.children.splice(colIndex, 0, createTh());
+                        row.children.splice(colIndex, 0, createTh().shift());
                     }
                 });
             } else if (direction === 'right') {
@@ -128,7 +145,7 @@ const LayoutTable = defineComponent({
                         row.children.splice(colIndex + 1, 0, createCell(td));
                     }
                     if(row.name === 'trHeader'){
-                        row.children.splice(colIndex + 1, 0, createTh());
+                        row.children.splice(colIndex + 1, 0, createTh().shift());
                     }
                 });
             } else if (direction === 'up') {
@@ -144,6 +161,7 @@ const LayoutTable = defineComponent({
                 //需要判断一下
                 const rowspan = td.properties.rowspan > 1 ? td.properties.rowspan: rowIndex;
                 rows.value.splice(rowspan + 1, 0, newRow);
+                console.log(rows.value)
             }
             updateChildren();
         };
@@ -154,7 +172,7 @@ const LayoutTable = defineComponent({
                 .flatMap((row: any) => row.children);// 提取所有单元格
             properties.value.totalRows = rows.value.length;
             updateTotalThWidth();
-            //row.children.filter((cell: any) => !cell.properties.isMerged) // 过滤掉已合并的单元格
+            saveToLocalStorage(props.widgets,props.defaultForm);
         };
         const updateTotalThWidth = ()=>{
             // 如果需要，可以保留这一行以过滤未定义的宽度
@@ -424,7 +442,7 @@ const LayoutTable = defineComponent({
                                         verticalAlign:td.properties.verticalAlign
                                     }}
                                     onClick={(event: any) => props.widgetViewHandle(event, td)}
-                                    class={[styles['widget-col'], {[styles['selected']]: props.defaultForm.activeWidget === td.name}]}
+                                    class={[styles['widget-col'],[`w-td-${td.properties.justifyContent}`], {[styles['selected']]: props.defaultForm.activeWidget === td.name}]}
                                 >
                                     <DraggableNested
                                         widgets={td.children}
@@ -457,7 +475,7 @@ const LayoutTable = defineComponent({
         const renderTableHeader = (child: any) => (
             <tr>
                 {child.map((tr: any) => (
-                    <th style={{width: tr.properties.width}} class={styles['widget-table-th-header']}
+                    <th style={{width: tr.properties.width}} class={[styles['widget-table-th-header'],tr.name === props.defaultForm.activeWidget?styles['selected-th-header']:'']}
                         onClick={(event: any) => props.widgetViewHandle(event, tr)}>
                         <div class={styles['widget-table-header']}><b>{tr.properties.width}</b></div>
                     </th>

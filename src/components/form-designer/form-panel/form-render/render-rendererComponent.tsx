@@ -1,8 +1,8 @@
-import {defineComponent, PropType} from 'vue';
+import {defineComponent, PropType,watch} from 'vue';
 import {
     ElButton, ElCascader,
     ElCheckbox,
-    ElCheckboxGroup, ElDatePicker, ElIcon,
+    ElCheckboxGroup, ElDatePicker, ElIcon, ElImage,
     ElInput,
     ElInputNumber, ElLink, ElOption,
     ElRadio,
@@ -54,6 +54,9 @@ export default defineComponent({
             const uploadHandleRemove = () => {}
             const uploadHandlePreview = (uploadFile:any)=>{
                 window.open(uploadFile.url, '_blank');
+            }
+            const dynamicClick =(formData)=> {
+                componentData?.dynamicClick?.(formData);
             }
             const key = formData ? 'formData' : 'properties';
             switch (type) {
@@ -256,6 +259,15 @@ export default defineComponent({
                             options={properties.options}
                             v-model={modelValue[key][formDataKey]}
                         />
+                    )
+                case 'img':
+                    let renderError = ()=> (
+                        <div class='image-slot'>
+                            <span>{properties.errorPlaceholder}</span>
+                        </div>
+                    )
+                    return (
+                        <ElImage v-slots={{error:renderError}} onClick={properties.dynamicClick?()=>dynamicClick(formDataKey):undefined} style={{width:properties.width,height:properties.height}} fit={properties.fit} src={modelValue[key][formDataKey]}/>
                     )
                 default:
                     return null;

@@ -95,6 +95,9 @@ export default defineComponent({
         watch(reactiveFormData, (newVal) => {
             Object.assign(formData, newVal);
         }, { deep: true });
+        watch(formData, (newVal) => {
+            Object.assign(reactiveFormData, newVal);
+        }, { deep: true });
         const formDataComputed = computed(() => reactiveFormData);
         const widgets:any = ref([]);
         const renderProperties = (properties:any) => {
@@ -156,7 +159,7 @@ export default defineComponent({
                             borderLeftWidth:property.borderWidth|| '1px',
                             borderLeftColor:property.borderColor,
                             borderTopColor:property.borderColor
-                        }} class={styles['widget-table']}>
+                        }} class={[styles['widget-table'],'generate-table']}>
                             <thead>
                                 <tr>
                                     {totalThWidth.map((thWidth, index) => (
@@ -183,13 +186,12 @@ export default defineComponent({
                                                             borderBottomWidth: property.borderWidth,
                                                             borderBottomColor: property.borderColor,
                                                             borderRightColor: property.borderColor,
-                                                            textAlign:property.textAlign,
-                                                            verticalAlign:property.verticalAlign,
                                                             borderBottomStyle: 'solid',
                                                             borderRightStyle: 'solid',
                                                             padding: '5px',
                                                             height:prop.height
                                                         }}
+                                                            class={`w-td-${prop.justifyContent}`}
                                                             colspan={prop.colspan}
                                                             rowspan={prop.rowspan}
                                                         >
@@ -200,7 +202,6 @@ export default defineComponent({
                                                             )}
                                                         </td>
                                                     )
-
                                                 )
                                             })}
                                         </tr>
@@ -271,6 +272,11 @@ export default defineComponent({
                                 <div v-html={formData[key]}></div>
                             )
                         }
+                        if(property.widget === 'img'){
+                            return(
+                                <ElImage style={{width:property.width,height:property.height}} src={formData[key]} fit={property.fit}/>
+                            )
+                        }
                         return(
                             formData[key]
                         )
@@ -310,6 +316,7 @@ export default defineComponent({
                     labelSuffix={data.labelSuffix ? ':' : ''}
                     labelPosition={data.labelAlign}
                     size={data.size}
+                    class='eli-form-generate'
             >
                 {renderProperties(data.properties || {})}
                 <ElDialog v-model={dialogUploadVisible.value}  width={500} center>

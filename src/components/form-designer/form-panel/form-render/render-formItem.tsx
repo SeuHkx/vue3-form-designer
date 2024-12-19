@@ -17,7 +17,7 @@ const FormItem = defineComponent({
             type: Array as PropType<any[]>,
             required: true,
             default: () => []
-        },
+        }
     },
     setup(props) {
         const expression = ref('');

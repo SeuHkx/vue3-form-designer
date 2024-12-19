@@ -32,6 +32,9 @@ export default defineComponent({
                 headers:{
 
                 }
+            },
+            dynamicClick:(key)=>{
+                
             }
         }
         const closePreviewFormHandle = ()=>{
@@ -61,7 +64,7 @@ export default defineComponent({
             <div class='dialog-footer'>
                 <ElButton onClick={closePreviewFormHandle}>关闭</ElButton>
                 <ElButton type='primary' onClick={modeSwitch}>
-                    {isEditing.value?'只读':'编辑'}
+                    {isEditing.value?'只读模式':'编辑模式'}
                 </ElButton>
                 <ElButton type='primary' onClick={getFormData}>表单数据</ElButton>
             </div>
