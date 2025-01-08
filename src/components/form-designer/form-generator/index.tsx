@@ -36,6 +36,10 @@ export default defineComponent({
             required: true,
             default: () => ({}),
         },
+        ruleFormRef:{
+            type: Object,
+            required:false
+        },
         componentData:{
             type: Object as PropType<any>,
             required:false
@@ -312,7 +316,7 @@ export default defineComponent({
             });
         };
         return () => (
-            <ElForm model={formDataComputed.value} labelWidth={data.labelWidth || ''}
+            <ElForm ref={props.ruleFormRef} model={formDataComputed.value} labelWidth={data.labelWidth || ''}
                     labelSuffix={data.labelSuffix ? ':' : ''}
                     labelPosition={data.labelAlign}
                     size={data.size}

@@ -80,8 +80,16 @@ const DraggableNested = defineComponent({
                 const { index, parentPath } = result;
                 const targetList = parentPath.length ? parentPath[parentPath.length - 1].children! : props.widgets;
                 const newWidget = _.cloneDeep(widget);
-                newWidget.name += '_' + generateRandomString();
-                newWidget.id += '_' + generateRandomString();
+                const updateNamesRecursively = (widget: any) => {
+                    widget.name += '_' + generateRandomString();
+                    widget.id += '_' + generateRandomString();
+                    if (widget.children) {
+                        widget.children.forEach((child: any) => {
+                            updateNamesRecursively(child);
+                        });
+                    }
+                };
+                updateNamesRecursively(newWidget);
                 targetList.splice(index + 1, 0, newWidget);
                 props.selectedWidget.value = newWidget;
                 props.defaultForm.activeWidget = newWidget.name;
